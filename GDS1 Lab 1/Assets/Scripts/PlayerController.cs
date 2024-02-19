@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     int SoldiersRescued = 0;
     [SerializeField] TextMeshProUGUI CarryingText;
     [SerializeField] TextMeshProUGUI RescuedText;
+    [SerializeField] TextMeshProUGUI WinLoseText;
     [SerializeField] SoldierSpawning soldierSpawning;
 
     // Start is called before the first frame update
@@ -59,7 +60,8 @@ public class PlayerController : MonoBehaviour
 
     private void LoseCondition()
     {
-        Debug.Log("You Lose");
+        WinLoseText.text = "You Lose!";
+        //Debug.Log("You Lose!");
     }
 
     private void WinConditionCheck()
@@ -67,7 +69,8 @@ public class PlayerController : MonoBehaviour
         // If rescued all soldiers
         if (SoldiersRescued == soldierSpawning.numSoldiers)
         {
-            Debug.Log("You Win!");
+            WinLoseText.text = "You Win!";
+            //Debug.Log("You Win!");
         }
     }
 }

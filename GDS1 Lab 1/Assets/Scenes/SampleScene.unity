@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 24912569}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf458032f2ae65d4fa849832330a4777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CarryingText: {fileID: 496607366}
+  RescuedText: {fileID: 1438903713}
 --- !u!61 &24912568
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -954,7 +956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e774fc2bcc132044d81b0533156ef03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Soldier: {fileID: 7110763378911292714, guid: e812a8fe40529a04d96bd7dd279b4f60, type: 3}
+  Soldier: {fileID: 0}
+  PlayerController: {fileID: 0}
 --- !u!1001 &1246102022
 PrefabInstance:
   m_ObjectHideFlags: 0

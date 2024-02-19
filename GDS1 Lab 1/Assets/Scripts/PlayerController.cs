@@ -51,6 +51,15 @@ public class PlayerController : MonoBehaviour
             WinConditionCheck();
             //Debug.Log("Soldiers Dropped off");
         }
+        if (collision.gameObject.tag == "Tree")
+        {
+            LoseCondition();
+        }
+    }
+
+    private void LoseCondition()
+    {
+        Debug.Log("You Lose");
     }
 
     private void WinConditionCheck()

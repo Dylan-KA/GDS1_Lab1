@@ -24,7 +24,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
+        if (!ResetGameCheck())
+        {
+            PlayerMovement();
+        }
+    }
+
+    private bool ResetGameCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //Reset Data & UI
+            SoldiersCarrying = 0;
+            SoldiersRescued = 0;
+            CarryingText.text = "Soldiers In Helicopter: " + SoldiersCarrying;
+            RescuedText.text = "Soldiers Rescued: " + SoldiersRescued;
+            WinLoseText.text = "";
+
+            //Reset Player Position
+            transform.position = new Vector2(-5.0f, 0.0f);
+
+            //Remove existing Soldiers and Spawn new Soldiers
+            
+            soldierSpawning.SpawnSoldiers();
+            
+            Debug.Log("Game Restarted!");
+            return true;
+        }
+        return false;
     }
 
     void PlayerMovement()

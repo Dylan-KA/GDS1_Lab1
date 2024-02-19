@@ -29,12 +29,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision occurred");
+        //Debug.Log("Collision occurred");
         if (collision.gameObject.tag == "Soldier" && (SoldiersCarrying < MaxCarryingCapacity))
         {
             Destroy(collision.gameObject);
             SoldiersCarrying += 1;
-            Debug.Log("Soldier Picked up");
+            //Debug.Log("Soldier Picked up");
+        }
+        if (collision.gameObject.tag == "Hospital")
+        {
+            SoldiersCarrying = 0;
+            //Debug.Log("Soldiers Dropped off");
         }
     }
 }

@@ -17,6 +17,7 @@ public class SoldierSpawning : MonoBehaviour
 
     public void SpawnSoldiers()
     {
+        //Clear any existing Soldiers first
         foreach (GameObject soldier in SoldiersList)
         {
             if (soldier != null)
@@ -25,6 +26,7 @@ public class SoldierSpawning : MonoBehaviour
             }
         }
         SoldiersList.Clear();
+
         for (int i = 0; i < numSoldiers; i++)
         {
             //Spawn soldier in random position

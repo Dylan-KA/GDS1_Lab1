@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         // If rescued all soldiers
         if (SoldiersRescued == soldierSpawning.numSoldiers)
         {
-
+            Debug.Log("You Win!");
         }
     }
 }

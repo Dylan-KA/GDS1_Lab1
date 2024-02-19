@@ -224,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CarryingText: {fileID: 496607366}
   RescuedText: {fileID: 1438903713}
+  soldierSpawning: {fileID: 891228157}
 --- !u!61 &24912568
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -956,8 +957,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e774fc2bcc132044d81b0533156ef03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Soldier: {fileID: 0}
-  PlayerController: {fileID: 0}
+  Soldier: {fileID: 7110763378911292714, guid: e812a8fe40529a04d96bd7dd279b4f60, type: 3}
+  numSoldiers: 9
 --- !u!1001 &1246102022
 PrefabInstance:
   m_ObjectHideFlags: 0

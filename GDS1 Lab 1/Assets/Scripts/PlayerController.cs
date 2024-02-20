@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     int SoldiersCarrying = 0;
     int SoldiersRescued = 0;
     float CurrentFuel = 100;
+    bool IsFacingRight = true;
     [SerializeField] TextMeshProUGUI CarryingText;
     [SerializeField] TextMeshProUGUI RescuedText;
     [SerializeField] TextMeshProUGUI WinLoseText;
@@ -80,14 +81,40 @@ public class PlayerController : MonoBehaviour
             LoseCondition("Out of Fuel You Lose!");
             return;
         }
+        
+        //Movement
         Vector2 newDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         transform.Translate(newDirection * movementSpeed * Time.deltaTime);
+
+        //Rotation
+        if (newDirection.x > 0 && !IsFacingRight)
+        {
+            //Debug.Log("Flipping Horizontal to face right");
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            IsFacingRight = true;
+        }
+        if ((newDirection.x < 0) && IsFacingRight)
+        {
+            //Debug.Log("Flipping Horizontal to face left");
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            IsFacingRight = false;
+        }
+
         if (newDirection != Vector2.zero)
         {
             FuelConsumption();
+            transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         } else
         {
-            //Debug.Log("Not Moving");
+            Debug.Log("Not Moving");
+            //transform.rotation.Set(50.0f, 50.0f, 50.0f, 1.0f);
+            if (IsFacingRight)
+            {
+                transform.localEulerAngles = new Vector3(0.0f, 0.0f, 18.0f);
+            } else
+            {
+                transform.localEulerAngles = new Vector3(0.0f, 0.0f, -18.0f);
+            }
         }
     }
 

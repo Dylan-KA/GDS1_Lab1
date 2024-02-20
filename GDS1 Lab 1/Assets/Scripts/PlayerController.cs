@@ -106,8 +106,7 @@ public class PlayerController : MonoBehaviour
             transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         } else
         {
-            Debug.Log("Not Moving");
-            //transform.rotation.Set(50.0f, 50.0f, 50.0f, 1.0f);
+            //Debug.Log("Not Moving");
             if (IsFacingRight)
             {
                 transform.localEulerAngles = new Vector3(0.0f, 0.0f, 18.0f);

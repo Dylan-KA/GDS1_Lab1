@@ -131,6 +131,10 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.tag == "Hospital")
         {
+            if (SoldiersCarrying != 0)
+            {
+                audioManager.PlaySoldierDropOff();
+            }
             SoldiersRescued += SoldiersCarrying;
             SoldiersCarrying = 0;
             CarryingText.text = "Soldiers In Helicopter: " + SoldiersCarrying;

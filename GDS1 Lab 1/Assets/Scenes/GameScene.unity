@@ -1059,6 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoldierPickup: {fileID: 1475352954}
+  SoldierDropOff: {fileID: 1769934201}
 --- !u!1 &922078155
 GameObject:
   m_ObjectHideFlags: 0

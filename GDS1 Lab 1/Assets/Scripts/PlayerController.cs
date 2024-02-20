@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     int SoldiersCarrying = 0;
     int SoldiersRescued = 0;
     float CurrentFuel = 100;
-    float FuelConsumptionRate = 10;
+    float FuelConsumptionRate = 8;
     bool IsFacingRight = true;
     [SerializeField] TextMeshProUGUI CarryingText;
     [SerializeField] TextMeshProUGUI RescuedText;

@@ -148,6 +148,10 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.tag == "Refuel")
         {
+            if (CurrentFuel < 100.0f)
+            {
+                audioManager.PlayRefuel();
+            }
             CurrentFuel = 100.0f;
         }
     }

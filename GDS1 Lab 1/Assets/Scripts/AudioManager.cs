@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource SoldierPickup;
     [SerializeField] AudioSource SoldierDropOff;
     [SerializeField] AudioSource Refuel;
+    [SerializeField] AudioSource Crash;
 
     // Start is called before the first frame update
     void Start()
@@ -33,5 +34,10 @@ public class AudioManager : MonoBehaviour
     public void PlayRefuel()
     {
         Refuel.Play();
+    }
+
+    public void PlayCrash()
+    {
+        Crash.Play();
     }
 }

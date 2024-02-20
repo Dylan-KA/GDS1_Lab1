@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.tag == "Tree")
         {
+            audioManager.PlayCrash();
             LoseCondition();
         }
         if (collision.gameObject.tag == "Refuel")

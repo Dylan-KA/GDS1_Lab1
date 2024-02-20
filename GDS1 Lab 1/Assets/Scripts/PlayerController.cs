@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -13,20 +14,28 @@ public class PlayerController : MonoBehaviour
     int SoldiersRescued = 0;
     float CurrentFuel = 100;
     float FuelConsumptionRate = 8;
+    int HighScore = 0;
     bool IsFacingRight = true;
     bool IsGameOver = false;
+    bool GameWon = false;
     [SerializeField] TextMeshProUGUI CarryingText;
     [SerializeField] TextMeshProUGUI RescuedText;
     [SerializeField] TextMeshProUGUI WinLoseText;
+    [SerializeField] TextMeshProUGUI HighScoreText;
     [SerializeField] TextMeshProUGUI FuelText;
     [SerializeField] GameObject BackgroundMid;
+    [SerializeField] GameObject BackgroundBonus;
+    [SerializeField] TextMeshProUGUI BonusText;
     [SerializeField] SoldierSpawning soldierSpawning;
     [SerializeField] AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (SceneManager.GetActiveScene().name == "GameSceneBonus")
+        {
+            Invoke("BonusLevelIntro", 3.0f);
+        }
     }
 
     // Update is called once per frame
@@ -36,7 +45,11 @@ public class PlayerController : MonoBehaviour
         if (!IsGameOver)
         {
             PlayerMovement();
-        }        
+        }
+        if (GameWon && Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadSceneAsync(1);
+        }
     }
 
     private void FuelConsumption()
@@ -179,6 +192,14 @@ public class PlayerController : MonoBehaviour
         IsGameOver = true;
         WinLoseText.text = "Game Over!";
         BackgroundMid.SetActive(true);
+        if (SceneManager.GetActiveScene().name == "GameSceneBonus")
+        {
+            if (SoldiersRescued > HighScore)
+            {
+                HighScore = SoldiersRescued;
+                HighScoreText.text = "HighScore: " + HighScore;
+            }
+        }
         //Debug.Log("You Lose!");
     }
 
@@ -187,6 +208,14 @@ public class PlayerController : MonoBehaviour
         IsGameOver = true;
         WinLoseText.text = LoseText;
         BackgroundMid.SetActive(true);
+        if (SceneManager.GetActiveScene().name == "GameSceneBonus")
+        {
+            if (SoldiersRescued > HighScore)
+            {
+                HighScore = SoldiersRescued;
+                HighScoreText.text = "HighScore: " + HighScore;
+            }
+        }
         //Debug.Log("You Lose!");
     }
 
@@ -195,10 +224,28 @@ public class PlayerController : MonoBehaviour
         // If rescued all soldiers
         if (SoldiersRescued == soldierSpawning.numSoldiers)
         {
-            WinLoseText.text = "You Win!";
-            BackgroundMid.SetActive(true);
-            IsGameOver = true;
-            //Debug.Log("You Win!");
+            if (SceneManager.GetActiveScene().name != "GameSceneBonus")
+            {
+                WinLoseText.text = "You Win!";
+                BackgroundMid.SetActive(true);
+                IsGameOver = true;
+                GameWon = true;
+                BackgroundBonus.SetActive(true);
+                BonusText.text = "Press 'Enter' for Bonus Level";
+                //Debug.Log("You Win!");
+            } else
+            {
+                //Debug.Log("In Bonus Scene");
+                soldierSpawning.SpawnSoldiers();
+            }
+
         }
     }
+
+    private void BonusLevelIntro()
+    {
+        BackgroundMid.SetActive(false);
+        WinLoseText.text = "";
+    }
+
 }

@@ -18,12 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI WinLoseText;
     [SerializeField] TextMeshProUGUI FuelText;
     [SerializeField] SoldierSpawning soldierSpawning;
-    Rigidbody2D rigidBody2D;
+    [SerializeField] AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigidBody2D = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Collision occurred");
         if (collision.gameObject.tag == "Soldier" && (SoldiersCarrying < MaxCarryingCapacity))
         {
+            audioManager.PlaySoldierPickup();
             Destroy(collision.gameObject);
             SoldiersCarrying += 1;
             CarryingText.text = "Soldiers In Helicopter: " + SoldiersCarrying;

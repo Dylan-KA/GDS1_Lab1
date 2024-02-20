@@ -3,20 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    float movementSpeed = 10;
+    float movementSpeed = 8;
     int MaxCarryingCapacity = 3;
     int SoldiersCarrying = 0;
     int SoldiersRescued = 0;
     float CurrentFuel = 100;
     float FuelConsumptionRate = 8;
     bool IsFacingRight = true;
+    bool IsGameOver = false;
     [SerializeField] TextMeshProUGUI CarryingText;
     [SerializeField] TextMeshProUGUI RescuedText;
     [SerializeField] TextMeshProUGUI WinLoseText;
     [SerializeField] TextMeshProUGUI FuelText;
+    [SerializeField] GameObject BackgroundMid;
     [SerializeField] SoldierSpawning soldierSpawning;
     [SerializeField] AudioManager audioManager;
 
@@ -29,10 +32,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!ResetGameCheck())
+        ResetGameCheck();
+        if (!IsGameOver)
         {
             PlayerMovement();
-        }
+        }        
     }
 
     private void FuelConsumption()
@@ -54,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //Reset Data & UI
+            //Reset variables & UI
             SoldiersCarrying = 0;
             SoldiersRescued = 0;
             CurrentFuel = 100;
@@ -62,6 +66,8 @@ public class PlayerController : MonoBehaviour
             RescuedText.text = "Soldiers Rescued: " + SoldiersRescued;
             FuelText.text = "Fuel: 100.0";
             WinLoseText.text = "";
+            IsGameOver = false;
+            BackgroundMid.SetActive(false);
 
             //Reset Player Position
             transform.position = new Vector3(-5.0f, 0.0f, -1.0f);
@@ -72,7 +78,6 @@ public class PlayerController : MonoBehaviour
             //Restart BGM
             audioManager.PlayBGM();
 
-            //Debug.Log("Game Restarted!");
             return true;
         }
         return false;
@@ -82,7 +87,7 @@ public class PlayerController : MonoBehaviour
     {
         if (CurrentFuel <= 0)
         {
-            LoseCondition("Out of Fuel You Lose!");
+            LoseCondition("Out of Fuel Game Over!");
             return;
         }
         
@@ -104,6 +109,7 @@ public class PlayerController : MonoBehaviour
             IsFacingRight = false;
         }
 
+        //Fuel Consumption
         if (newDirection != Vector2.zero)
         {
             FuelConsumption();
@@ -148,7 +154,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Tree")
         {
             audioManager.PlayCrash();
-            LoseCondition();
+            LoseCondition("You Crashed! Game Over!");
         }
         if (collision.gameObject.tag == "Refuel")
         {
@@ -170,13 +176,17 @@ public class PlayerController : MonoBehaviour
 
     private void LoseCondition()
     {
-        WinLoseText.text = "You Lose!";
+        IsGameOver = true;
+        WinLoseText.text = "Game Over!";
+        BackgroundMid.SetActive(true);
         //Debug.Log("You Lose!");
     }
 
     private void LoseCondition(String LoseText)
     {
+        IsGameOver = true;
         WinLoseText.text = LoseText;
+        BackgroundMid.SetActive(true);
         //Debug.Log("You Lose!");
     }
 
@@ -186,6 +196,8 @@ public class PlayerController : MonoBehaviour
         if (SoldiersRescued == soldierSpawning.numSoldiers)
         {
             WinLoseText.text = "You Win!";
+            BackgroundMid.SetActive(true);
+            IsGameOver = true;
             //Debug.Log("You Win!");
         }
     }

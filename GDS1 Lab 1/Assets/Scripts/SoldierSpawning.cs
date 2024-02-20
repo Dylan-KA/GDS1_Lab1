@@ -30,7 +30,7 @@ public class SoldierSpawning : MonoBehaviour
         for (int i = 0; i < numSoldiers; i++)
         {
             //Spawn soldier in random position
-            Vector2 RandomPosition = new Vector2(Random.Range(-2.0f, 8.5f), Random.Range(-5.0f, 5.0f));
+            Vector2 RandomPosition = new Vector2(Random.Range(-3.0f, 9.0f), Random.Range(-4.0f, 3.0f));
             GameObject newSoldier = Instantiate(Soldier);
             SoldiersList.Add(newSoldier);
             newSoldier.transform.position = RandomPosition;

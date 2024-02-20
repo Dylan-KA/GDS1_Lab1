@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
             WinLoseText.text = "";
 
             //Reset Player Position
-            transform.position = new Vector2(-5.0f, 0.0f);
+            transform.position = new Vector3(-5.0f, 0.0f, -1.0f);
 
             //Remove existing Soldiers and Spawn new Soldiers
             soldierSpawning.SpawnSoldiers();

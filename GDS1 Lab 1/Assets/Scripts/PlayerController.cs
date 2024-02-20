@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     int SoldiersCarrying = 0;
     int SoldiersRescued = 0;
     float CurrentFuel = 100;
+    float FuelConsumptionRate = 10;
     bool IsFacingRight = true;
     [SerializeField] TextMeshProUGUI CarryingText;
     [SerializeField] TextMeshProUGUI RescuedText;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         if (CurrentFuel > 0)
         {
-            CurrentFuel -= Time.deltaTime * 5;
+            CurrentFuel -= Time.deltaTime * FuelConsumptionRate;
             float CurrentFuelRounded = Mathf.Round(CurrentFuel * 100f) / 100f;
             FuelText.text = "Fuel: " + CurrentFuelRounded;
         } else if (CurrentFuel < 0)

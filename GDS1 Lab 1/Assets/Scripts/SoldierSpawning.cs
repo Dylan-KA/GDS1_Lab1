@@ -34,6 +34,10 @@ public class SoldierSpawning : MonoBehaviour
             GameObject newSoldier = Instantiate(Soldier);
             SoldiersList.Add(newSoldier);
             newSoldier.transform.position = RandomPosition;
+            if (i % 2 == 0)
+            {
+                newSoldier.transform.localScale = new Vector3(newSoldier.transform.localScale.x * -1, newSoldier.transform.localScale.y, newSoldier.transform.localScale.z);
+            }
         }
     }
 

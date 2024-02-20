@@ -68,7 +68,10 @@ public class PlayerController : MonoBehaviour
 
             //Remove existing Soldiers and Spawn new Soldiers
             soldierSpawning.SpawnSoldiers();
-            
+
+            //Restart BGM
+            audioManager.PlayBGM();
+
             //Debug.Log("Game Restarted!");
             return true;
         }

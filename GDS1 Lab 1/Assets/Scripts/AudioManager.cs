@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource SoldierDropOff;
     [SerializeField] AudioSource Refuel;
     [SerializeField] AudioSource Crash;
+    [SerializeField] AudioSource BackgroundMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -39,5 +40,11 @@ public class AudioManager : MonoBehaviour
     public void PlayCrash()
     {
         Crash.Play();
+    }
+
+    public void PlayBGM()
+    {
+        BackgroundMusic.Stop();
+        BackgroundMusic.Play();
     }
 }

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI BonusText;
     [SerializeField] SoldierSpawning soldierSpawning;
     [SerializeField] AudioManager audioManager;
+    [SerializeField] PauseMenu pauseMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
             WinLoseText.text = "";
             IsGameOver = false;
             BackgroundMid.SetActive(false);
+            pauseMenu.ResumeGame();
 
             //Reset Player Position
             transform.position = new Vector3(-5.0f, 0.0f, -1.0f);
@@ -98,6 +100,11 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
+        if (pauseMenu.IsGamePaused())
+        {
+            return;
+        }
+
         if (CurrentFuel <= 0)
         {
             LoseCondition("Out of Fuel Game Over!");

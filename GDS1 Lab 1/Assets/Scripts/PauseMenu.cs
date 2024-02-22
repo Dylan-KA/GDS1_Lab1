@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] Button ResumeButton;
     [SerializeField] Button SwitchLevelButton;
+    [SerializeField] Button MainMenuButton;
     [SerializeField] GameObject PausePanel;
     [SerializeField] AudioSource BGMusic;
 
@@ -61,6 +62,7 @@ public class PauseMenu : MonoBehaviour
         PausePanel.SetActive(true);
         ResumeButton.enabled = true;
         SwitchLevelButton.enabled = true;
+        MainMenuButton.enabled = true;
     }
 
     private void HidePauseMenu()
@@ -68,6 +70,7 @@ public class PauseMenu : MonoBehaviour
         PausePanel.SetActive(false);
         ResumeButton.enabled = false;
         SwitchLevelButton.enabled = false;
+        MainMenuButton.enabled = false;
     }
 
     public void PauseGame()
@@ -84,6 +87,11 @@ public class PauseMenu : MonoBehaviour
         BGMusic.UnPause();
         HidePauseMenu();
         //Debug.Log("Game Resumed");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
     }
 
 }

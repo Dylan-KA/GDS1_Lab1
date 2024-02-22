@@ -43,11 +43,11 @@ public class PauseMenu : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
-            SceneManager.LoadSceneAsync(1);
+            SceneManager.LoadSceneAsync(2);
         }
         else
         {
-            SceneManager.LoadSceneAsync(0);
+            SceneManager.LoadSceneAsync(1);
         }
     }
 

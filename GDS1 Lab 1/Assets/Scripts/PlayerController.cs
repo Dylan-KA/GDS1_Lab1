@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
         if (GameWon && Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadSceneAsync(1);
+            SceneManager.LoadSceneAsync(2);
         }
     }
 
